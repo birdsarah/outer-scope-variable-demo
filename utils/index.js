@@ -12,5 +12,5 @@ export async function route_a(req) {
 export async function route_b(req) {
   access_token = req.query.access_token;
   await timer(randomWait());
-  return access_token;  
+  return access_token;
 }

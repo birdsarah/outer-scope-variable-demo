@@ -5,75 +5,44 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-          <script type="text/javascript" src="/main.js" />
+        <link rel="stylesheet" href="/main.css" />
+        <script type="text/javascript" src="/main.js" />
+
       </Head>
 
       <main>
         <h1 className="title">
           Outer scope variable demo
         </h1>
-       
-        <div className="contents">
-          <h2>Stuff</h2>
-          <div id="output"></div>
-        </div>
-       
+        <p>Api routes a and b share the following code:</p>
+        <code><pre>{`
+let access_token;
+
+const timer = ms => new Promise( res => setTimeout(res, ms));
+const randomWait = () => Math.random() * 1000
+
+export async function route_a(req) {
+  access_token = req.query.access_token;
+  await timer(randomWait());
+  return access_token;
+}
+
+export async function route_b(req) {
+  access_token = req.query.access_token;
+  await timer(randomWait());
+  return access_token;
+}
+      `}</pre></code>
+      <p>The API endpoints are set-up to simulate a race condition when we hit them at the same time in quick successtion.</p>
+      <p>First we hit endpoints a and b seperately and slowly to avoid the race condition. We see the following expected output:</p>
+      <ul id="slow-output"></ul>
+      <p>Now we hit them repeatedly in quick succession to simulate a higher-load server. We see the following output:</p>
+      <ul id="fast-output"></ul>
+      <p>
+        Setting <code>access_token</code> outside of the scope of the <code>route_a</code> and <code>route_b</code> functions causes a collision and
+        <code>route_a</code> and <code>route_b</code> now overwrite each other randomly.
+      </p>
      </main>
-     
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: left;
-          align-items: left;
-                  }
-
-        main {
-          padding: 5rem 2rem;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: left;
-          align-items: left;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
     </div>
   )
 }
