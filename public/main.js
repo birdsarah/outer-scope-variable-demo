@@ -1,11 +1,8 @@
 function main() {
-  console.log('running');
+  console.log('a');
   document.getElementById('output').textContent = 'test'; 
 }
 
-console.log('AAA');
-
 window.onload = function() {
-  console.log('loaded');
   main();
 }
