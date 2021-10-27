@@ -23,16 +23,9 @@ function hit_api_a(token, htmlId) {
 
 function main() {
   for (const i of range(10)) {
-    hit_api_a(i, 'slow-output');
-    hit_api_b(i, 'slow-output');
+    hit_api_a(i, 'output');
+    hit_api_b(i, 'output');
   }
-  // Wait for slow pass to run
-  setTimeout(() => {
-    for (const i of range(10)) {
-      hit_api_a(i, 'fast-output');
-      hit_api_b(i, 'fast-output');
-    }
-  }, 15000)
 }
 
 window.onload = function() {

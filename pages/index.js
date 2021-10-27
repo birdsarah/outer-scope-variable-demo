@@ -33,11 +33,9 @@ export async function route_b(req) {
   return access_token;
 }
       `}</pre></code>
-      <p>The API endpoints are set-up to simulate a race condition when we hit them at the same time in quick successtion.</p>
-      <p>First we hit endpoints a and b seperately and slowly to avoid the race condition. We see the following expected output:</p>
-      <ul id="slow-output"></ul>
-      <p>Now we hit them repeatedly in quick succession to simulate a higher-load server. We see the following output:</p>
-      <ul id="fast-output"></ul>
+      <p>The API endpoints are set-up with a time-out to help simulate a race condition.</p>
+      <p>When we make 10 calls to each API in quick succession. We see the following output:</p>
+      <ul id="output"></ul>
       <p>
         Setting <code>access_token</code> outside of the scope of the <code>route_a</code> and <code>route_b</code> functions causes a collision and
         <code>route_a</code> and <code>route_b</code> now overwrite each other randomly.
