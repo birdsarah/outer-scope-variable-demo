@@ -1,0 +1,1 @@
+A small technical demo around JS variable scopes.

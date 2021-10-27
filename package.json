@@ -1,4 +1,7 @@
 {
+  "name": "outer-scope-variable-demo",
+  "version": "1.0.0",
+  "license": "mit",
   "entry_script": "start",
   "entry_file": "pages/index.js",
   "scripts": {

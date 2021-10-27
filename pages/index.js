@@ -40,6 +40,7 @@ export async function route_b(req) {
         Setting <code>access_token</code> outside of the scope of the <code>route_a</code> and <code>route_b</code> functions causes a collision and
         <code>route_a</code> and <code>route_b</code> now overwrite each other randomly.
       </p>
+      <p>The code for this repo is at <a href="https://github.com/birdsarah/outer-scope-variable-demo">https://github.com/birdsarah/outer-scope-variable-demo</a></p>
      </main>
     </div>
   )
