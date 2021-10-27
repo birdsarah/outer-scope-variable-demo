@@ -33,7 +33,7 @@ export async function route_b(req) {
   return access_token;
 }
       `}</pre></code>
-      <p>The API endpoints are set-up with a time-out to help simulate a race condition.</p>
+      <p>The API endpoints are set-up with a randomized 0-10ms timeout to help simulate a race condition.</p>
       <p>When we make 10 calls to each API in quick succession. We see the following output:</p>
       <ul id="output"></ul>
       <p>

@@ -1,7 +1,7 @@
 let access_token
 
 const timer = ms => new Promise( res => setTimeout(res, ms));
-const randomWait = () => Math.random() * 1000
+const randomWait = () => Math.random() * 10
 
 export async function route_a(req) {
   access_token = req.query.access_token;

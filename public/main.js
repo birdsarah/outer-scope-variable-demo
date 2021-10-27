@@ -1,22 +1,22 @@
 const range = n => [...Array(n).keys()]
 
 function renderData(data, htmlId) {
-  const dataNode = document.createElement('li');
+  const preNode = document.createElement('pre');
   const match = data.access_token_in === data.access_token_out;
   const color = match ? 'green' : 'red';
-  dataNode.style = `color: ${color}`;
-  dataNode.textContent = `route: ${data.route} | access_token in: ${data.access_token_in} | access_token out: ${data.access_token_out}`;
-  document.getElementById(htmlId).appendChild(dataNode)
+  preNode.style = `color: ${color}`;
+  preNode.textContent = `route: ${data.route} -- ${data.access_token_in} -> ${data.access_token_out} (access_token in -> out)`;
+  document.getElementById(htmlId).appendChild(preNode)
 }
 
-function hit_api_b(token, htmlId) {
-  fetch(`/api/route_b?access_token=${token}`)
+function hit_api_a(token, htmlId) {
+  fetch(`/api/route_a?access_token=a-${token}`)
     .then(response => response.json())
     .then(data => renderData(data, htmlId));
 }
 
-function hit_api_a(token, htmlId) {
-  fetch(`/api/route_a?access_token=${token}`)
+function hit_api_b(token, htmlId) {
+  fetch(`/api/route_b?access_token=b-${token}`)
     .then(response => response.json())
     .then(data => renderData(data, htmlId));
 }
